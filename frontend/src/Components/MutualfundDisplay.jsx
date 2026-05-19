@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./Footer";
 import MutualShow from "./MutualShow";
 
-function MutualfunDisplay(){
+function MutualfundDisplay(){
     return (
         <>
         <div className="w-screen h-auto bg-zinc-900">
@@ -15,4 +15,4 @@ function MutualfunDisplay(){
     )
 }
 
-export default MutualfunDisplay;
+export default MutualfundDisplay;

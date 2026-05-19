@@ -1,7 +1,8 @@
 import React from "react";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useEffect } from "react";
 import { useState } from "react";
+
 
 function Proto() {
   const [news, setNews] = useState([]);
@@ -14,9 +15,7 @@ function Proto() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/news/getnews"
-        );
+        const response = await axiosInstance.get("/news/getnews");
         const News = getnewNews(response.data);
         setNews(News);
       } catch (err) {

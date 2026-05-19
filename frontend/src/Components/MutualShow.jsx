@@ -84,15 +84,13 @@ function MutualShow() {
           </Link>
         </div>
         <div className="flex justify-between mt-5">
-          {collections.map((c,i)=>(
-           <>
-           <div>
-            <div className="flex items-center justify-center w-30 h-20 cursor-pointer bg-zinc-800 border-1 rounded-lg hover:scale-[102%] border-zinc-700">
-                <img src={c.image} className="w-12 mix-blend-lighten" />
+          {collections.map((c, i) => (
+            <div key={i}>
+              <div className="flex items-center justify-center w-30 h-20 cursor-pointer bg-zinc-800 border-1 rounded-lg hover:scale-[102%] border-zinc-700">
+                <img src={c.image} className="w-12 mix-blend-lighten" alt={c.name} />
+              </div>
+              <p className="text-md text-white font-semibold mt-1 text-center">{c.name}</p>
             </div>
-            <p className="text-md text-white font-semibold mt-1 text-center">{c.name}</p>
-            </div>
-           </>
           ))}
         </div>
         <h3 className="text-lg text-white font-bold mt-15">Product & Tools</h3>

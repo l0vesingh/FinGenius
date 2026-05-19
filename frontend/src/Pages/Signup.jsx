@@ -25,10 +25,10 @@ function Signup() {
     }
   }
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault();
-
-    const response = await axiosInstance.post("/auth/signup",{
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axiosInstance.post("/auth/signup", {
       firstname,
       lastname,
       email,
@@ -40,12 +40,19 @@ function Signup() {
         position: "top-right",
         autoClose: 5000,
         theme: "dark",
-    });
+      });
 
-    setTimeout(()=>{
-      navigate("/login");
-    },5000);
-    
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    }
+  } catch (err) {
+    console.error(err);
+    toast("❌ Signup failed. Please try again.", {
+      position: "top-right",
+      autoClose: 4000,
+      theme: "dark",
+    });
   }
 }
   return (

@@ -3,6 +3,10 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
 import axios from "axios";
 import StockCharts from "./StockCharts";
+const AI_BASE_URL = import.meta.env.VITE_AI_BASE_URL || "http://localhost:8000";
+
+
+
 function StockCompare() {
   const metricsList = [
     "Price",
@@ -40,13 +44,13 @@ function StockCompare() {
       if (!ticker) return;
       const dummyComparisonTicker = "AAPL"; // required to trigger compare (can be replaced with API to fetch single stock info)
 
-      const res = await axios.post("http://localhost:8000/compare", {
+      const res = await axios.post(AI_BASE_URL, "/compare", {
         ticker1: ticker,
         ticker2: dummyComparisonTicker,
       });
 
       const priceRes = await axios.get(
-        `http://localhost:8000/historical/${ticker}`
+        `${AI_BASE_URL}/historical/${ticker}`
       );
       const historicalPrices = priceRes.data;
 
