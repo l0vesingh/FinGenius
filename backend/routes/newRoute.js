@@ -1,7 +1,10 @@
 import express from 'express';
-const router = express.Router();
-import {getnews} from "../controllers/newsController.js"
+import { getnews } from "../controllers/newsController.js";
 
-router.get("/getnews",getnews);
+const router = express.Router();
+
+// Changed endpoint path to root "/" because the base prefix in server.js 
+// is already "/api/news", making this cleanly map to: GET /api/news
+router.get("/", getnews);
 
 export default router;

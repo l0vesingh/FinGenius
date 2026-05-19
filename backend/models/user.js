@@ -1,58 +1,37 @@
 import mongoose from "mongoose";
-const userSchema = new mongoose.Schema({
-    firstname:{
-        type:String,
-        required:true,
-    },
-    lastname:{
-        type:String,
-        required:true,
-    },
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-    },
-    password:{
-        type:String,
-        required:true,
-    },
-    mutualFunds:[
-        {
-            fundname:{
-                type:String,
-            },
-            fundvalue:{
-                type:Number,
-            },
-            fundunits:{
-                type:Number,
-            },
-            fundid:{
-                type:String,
-            },
-        }
 
-    ],
-    stocks:[
-        {
-            stockname:{
-                type:String,
-            },
-            stockvalue:{
-                type:Number,
-            },
-            stockunits:{
-                type:Number,
-            },
-            stockid:{
-                type:String,
-            },
-        }
-    ],
-},
-{
-    timestamps:true,
+const userSchema = new mongoose.Schema({
+    firstname: {
+        type: String,
+        required: [true, "First name is required"],
+        trim: true,
+    },
+    lastname: {
+        type: String,
+        required: [true, "Last name is required"],
+        trim: true,
+    },
+    email: {
+        type: String,
+        required: [true, "Email address is required"],
+        unique: true,
+        trim: true,
+        lowercase: true, // Auto-converts email inputs to lowercase
+        match: [
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            "Please provide a valid email address",
+        ],
+    },
+    password: {
+        type: String,
+        required: [true, "Password is required"],
+        minlength: [6, "Password must be at least 6 characters long"]
+    }
+}, {
+    timestamps: true,
 });
 
-export default mongoose.model("user", userSchema);
+// Explicit indexing for optimal retrieval speed
+userSchema.index({ email: 1 });
+
+export default mongoose.model("User", userSchema);
