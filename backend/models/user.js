@@ -31,7 +31,5 @@ const userSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-// Explicit indexing for optimal retrieval speed
-userSchema.index({ email: 1 });
 
 export default mongoose.model("User", userSchema);

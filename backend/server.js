@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
 });
 
 // 4. API Application Routes
-app.use("/news", newsRoutes);
-app.use("/auth", AuthRoutes);
+app.use("/api/news", newsRoutes);
+app.use("/api/auth", AuthRoutes);
 
 // 5. Catch-All Route for Missing Endpoints (404)
 app.use((req, res, next) => {
